@@ -1,0 +1,14 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+[user]
+	email = ice_b0und@hotmail.com
+	name = Alex Wang
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	branch = br
+[color]
+	ui = auto

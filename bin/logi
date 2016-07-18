@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+list = `xinput --list` 
+list.each_line do |l|
+ 	if l =~ /Logitech.*id=(\d+)/
+	 	`xinput set-prop #{$1} "Device Accel Constant Deceleration" 3`
+ 	end 
+end
