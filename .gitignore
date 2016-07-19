@@ -1,4 +1,22 @@
+## alex's .gitignore
+# default to ignore all files in home folder
+/*
+
+# git stuff
+!/.gitignore
+!/.gitmodules
+!/.gitconfig
+
+# vim stuff
 !/.vimrc
 !/.vim
-!/.gitignore
-*
+
+# zsh stuff
+!/.zshrc
+!/.zshenv
+
+# my custom stuff
+!/.alex
+
+# custom executables
+!/bin/*

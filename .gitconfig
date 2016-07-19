@@ -9,6 +9,8 @@
 	co = checkout
 	ci = commit
 	st = status
-	branch = br
+	br = branch
 [color]
 	ui = auto
+[diff]
+	tool = meld

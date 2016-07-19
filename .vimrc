@@ -1,19 +1,7 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" alex's .vimrc file
+" Use Pathogen to manager plugins
+execute pathogen#infect()
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'wincent/command-t'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'tpope/vim-commentary'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
 
 set tabstop=2
@@ -23,3 +11,12 @@ syntax on
 set backspace=indent,eol,start
 set hlsearch
 set showcmd
+set number
+set nofoldenable    " disable folding
+
+" For plugin command-t
+let g:CommandTMaxFiles=2000000
+let g:CommandTFileScanner="find" 
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>

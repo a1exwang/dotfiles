@@ -1,0 +1,6 @@
+- NERDTree
+	- <C-n> Toggle tree view
+	- in tree view
+		- <s> open in vsplit window
+		- <i> open in split window
+		- <o> open in current window
