@@ -16,7 +16,6 @@ set nofoldenable    " disable folding
 
 " For plugin command-t
 let g:CommandTMaxFiles=2000000
-let g:CommandTFileScanner="find" 
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
