@@ -15,6 +15,9 @@
 !/.zshrc
 !/.zshenv
 
+# tmux
+!/.tmux.conf
+
 # my custom stuff
 !/.alex
 
