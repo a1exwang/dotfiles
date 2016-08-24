@@ -6,7 +6,7 @@ filetype plugin indent on    " required
 
 set tabstop=2
 set shiftwidth=2
-set softtabstop=0 noexpandtab
+set softtabstop=0 expandtab
 syntax on
 set backspace=indent,eol,start
 set hlsearch
