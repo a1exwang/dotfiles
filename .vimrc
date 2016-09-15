@@ -27,7 +27,7 @@ function! RenameFile()
     redraw!
   endif
 endfunction
-:map <leader>n :call RenameFile()<cr>
+map <leader>n :call RenameFile()<cr>
 
 " Press Enter to remove search highlight
 nnoremap <ENTER> :nohlsearch<cr>
@@ -39,3 +39,9 @@ let g:CommandTTraverseSCM = '/home/alexwang/find_croot'
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
+
+" NERDCommentor
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+let g:NERDSpaceDelims = 1
+map <C-m> <leader>c<space>
