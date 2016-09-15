@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# shadowsocks
+echo 123 | sudo -S sslocal -s jp.a1ex.wang -k ygbkm+1995 -m aes-192-cfb -p 8124 -l 1081 -d start
+
+# ping server 
+nohup myping jp.a1ex.wang /home/alexwang/var/buffer/jp.ping > /dev/null &
+nohup myping v.a1ex.wang /home/alexwang/var/buffer/sf.ping > /dev/null &
+
+# logger daemon
+nohup /home/alexwang/bin/logger_mon > /dev/null &
+
+# configure mouse speed
+logi
+
+# sysmon monitor
+nohup indicator-sysmonitor >/dev/null &
+
