@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+puts ARGV
+on = ARGV.count > 0 &&  ['on', 'ON', 'On', 'up', 'Up', 'UP', '1'].include?(ARGV[0]) ?
+  1 : 0
+device_name = "Microsoft Surface Type Cover Touchpad"
+touchpad_line = `xinput list | grep "#{device_name}"`
+m = touchpad_line.match /id=(\d+)[^\d]/
+if m
+  id = m[1]
+  command = "xinput set-prop #{id} \"Device Enabled\" #{on}"
+  puts command
+  `#{command}`
+  puts "device id: #{id}, set to #{on == 1 ? "on" : "off"}"
+end
+
