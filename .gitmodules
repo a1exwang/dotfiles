@@ -4,9 +4,6 @@
 [submodule ".pyenv"]
 	path = .pyenv
 	url = https://github.com/yyuu/pyenv.git
-[submodule ".rvm"]
-	path = .rvm
-	url = https://github.com/rvm/rvm.git
 [submodule ".vim/bundle/vim-bundler"]
 	path = .vim/bundle/vim-bundler
 	url = git://github.com/tpope/vim-bundler.git
@@ -37,3 +34,6 @@
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
+[submodule ".vim/bundle/vim-pandoc-syntax"]
+	path = .vim/bundle/vim-pandoc-syntax
+	url = https://github.com/vim-pandoc/vim-pandoc-syntax

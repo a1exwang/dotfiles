@@ -57,6 +57,7 @@ map <C-n> :NERDTreeToggle<CR>
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 let g:NERDSpaceDelims = 1
+
 " map <C-k> <leader>c<space>
 
 " Press Enter to remove search highlight
