@@ -1,0 +1,72 @@
+#!/usr/bin/env ruby
+require 'filesize'
+require 'digest'
+require 'uri'
+require 'net/http'
+require 'json'
+require 'time'
+def tsinghua_flow
+  username, pass = File.read(File.join(ENV['HOME'], 'etc', 'tsinghua-id')).split("\n")
+  pass_md5 = Digest::MD5.hexdigest pass
+  header = `curl "http://usereg.tsinghua.edu.cn/login.php" -I -s`
+  if header =~ /PHPSESSID=(\w+)/
+    phpsessid = $1
+  else
+    return { status: :failed, info: header }
+  end
+  login_status = `curl "http://usereg.tsinghua.edu.cn/do.php" -s -d "action=login&user_login_name=#{username}&user_password=#{pass_md5}" -b "PHPSESSID=#{phpsessid};"`
+  if login_status == 'ok'
+    main = `curl "http://usereg.tsinghua.edu.cn/user_info.php" -s -b "PHPSESSID=#{phpsessid}" | iconv -f gb2312 -t utf8`
+    if main =~ /([0-9]+)\(byte\)/
+      return { status: :ok, flow: $1.to_i }
+    else
+      return { status: :failed, info: main }
+    end
+  else
+    return { status: :failed, info: login_status }
+  end
+end
+
+def vultr_info
+  apikey = File.read(File.join(ENV['HOME'], 'etc', 'vultr'))
+  uri = URI('https://api.vultr.com/v1/account/info')
+
+  req = Net::HTTP::Get.new(uri)
+  req['API-Key'] = apikey
+
+  res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+    http.request(req)
+    
+  end
+  json = JSON.parse res.body
+  balance = -json['balance'].to_f
+  pending_charges = -json['pending_charges'].to_f
+  last_payment_date = Time.parse json['last_payment_date']
+  last_payment_amount = -json['last_payment_amount'].to_f
+  current_balance = balance + pending_charges
+
+  { status: :ok, current_balance: current_balance, last_payment_date: last_payment_date, last_payment_amount: last_payment_amount }
+end
+
+def print_frame
+  puts '-' * 70
+  puts
+  puts "\t\tAlex's Statistics System"
+  puts 
+  puts '-' * 70
+end
+
+print_frame
+ret = tsinghua_flow
+if ret[:status] == :ok
+  puts "Tsinghua Flow Used:\t#{Filesize.new("#{ret[:flow]} B").to('GB').round(2)}GB"
+else
+  puts ret[:info]
+end
+
+ret = vultr_info
+if ret[:status] == :ok
+  puts "Vultr Balance:\t$#{ret[:current_balance].round(2)}"
+  puts "Vultr Last Pay:\t$#{ret[:last_payment_amount].round(2)}, #{ret[:last_payment_date].strftime("%Y-%m-%d %H:%M")}"
+end
+

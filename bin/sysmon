@@ -1,0 +1,117 @@
+#!/usr/bin/env ruby
+require 'filesize'
+require 'time'
+require 'json'
+require_relative 'lib/thuflow'
+WEEKDAYS = [
+  {name: "Mon", emoji: '😾'},
+  {name: "Tue", emoji: '😜'},
+  {name: "Wed", emoji: '😄'},
+  {name: "Thur", emoji: '😜'},
+  {name: "Fri", emoji: '😆'},
+  {name: "Sat", emoji: '😜'},
+  {name: "Sun", emoji: '😜'}
+]
+VAR = File.join(ENV['HOME'], 'var')
+ETC = File.join(ENV['HOME'], 'etc')
+LOG_FILE_PATH = File.join(VAR, 'indicator.log')
+
+def network_stat
+  interf = `cat "#{File.join(VAR, 'route')}" | grep default -m 1`.split.last
+  ifconfig = `ifconfig #{interf}`
+  stat = { 'time' => Time.now, 'interface' => interf }
+  
+  if ifconfig =~ /inet addr:\s*([.\d]+)/
+    stat['ipv4_addr'] = $1
+  end
+  if ifconfig =~ /inet6 addr:\s*([\w:]+).*Global/
+    stat['ipv6_global_addr'] = $1
+  end
+  if ifconfig =~ /inet6 addr:\s*([\w:]+).*Link/
+    stat['ipv6_link_addr'] = $1
+  end
+  if ifconfig =~ /RX bytes:\s*(\d+)/
+    stat['download_bytes'] = $1.to_i
+  end
+  if ifconfig =~ /TX bytes:\s*(\d+)/
+    stat['upload_bytes'] = $1.to_i
+  end
+  return '' unless stat.key?('ipv4_addr')
+
+  last_stat = {}
+  begin 
+    last_stat = JSON.parse(File.read(LOG_FILE_PATH))
+  rescue
+  end
+  File.write(LOG_FILE_PATH, stat.to_json)
+  
+  downrate, uprate = 0, 0
+  unless last_stat.empty?
+    interval = Time.now - Time.parse(last_stat['time'])
+    downrate = ((stat['download_bytes'] || 0) - (last_stat['download_bytes'] || 0))/interval
+    uprate = ((stat['upload_bytes'] || 0) - (last_stat['upload_bytes'] || 0))/interval
+    uprate = 0 if uprate < 0
+    downrate = 0 if downrate < 0
+  end
+
+  if uprate < 0
+    ret = " \u2191<1 KiB/s"
+  else
+    s, unit = Filesize.from(uprate.to_s + " B").pretty.split
+    s = "%03d.%02d" % [s.to_i, (s*100).to_i % 100]
+    ret = " \u2191#{s} #{unit}/s" 
+  end
+  if downrate < 1024
+    ret += " \u2193<1 KiB/s"
+  else
+    s, unit = Filesize.from(downrate.to_s + " B").pretty.split
+    s = "%03d.%02d" % [s.to_i, (s*100).to_i % 100]
+    ret += " \u2193#{s} #{unit}/s"
+  end
+  ret += " [Data Usage: \u2191#{Filesize.from(stat['upload_bytes'].to_s + " B").pretty}"
+  ret += "\u2193#{Filesize.from(stat['download_bytes'].to_s + " B").pretty}]"
+  ret += " IPv6" if stat.key?('ipv6_addr')
+  ret += " #{stat['ipv4_addr']}"   
+  if `iwconfig wlp2s0 2> /dev/null` =~ /ESSID:"([^"]+)"/
+    ret += ' ' + $1
+  else
+    ret += ' ' + stat['interface'].to_s
+  end
+  
+  ret
+end
+
+def date_info
+  open(File.join(ETC, 'weekstart'), 'r') do |f|
+    start = Time.parse f.read
+    seconds = Time.now - start
+    days = (seconds / 86400.0).to_i
+    week = (days / 7.0).to_i
+    weekday = WEEKDAYS[(days - week*7).floor]
+    
+    week_str = "W-%02d, #{weekday[:name]}#{weekday[:emoji]}" % [(week + 1).to_i]
+    time_str = Time.now.strftime "  #{week_str}"
+    time_str
+  end
+end
+def flow_info
+  ret = File.read File.join(VAR, 'thuflow.log')
+  if ret && ret.size > 0
+    flow = ret.to_i
+    gb = flow / (1000 ** 3)
+    flow -= gb * (1000 ** 3)
+    mb = flow / (1000 ** 2)
+    flow -= mb * (1000 ** 2)
+    kb = flow / 1000
+    "#{gb}G #{mb}M #{kb}K"
+  else
+    nil
+  end
+end
+
+print network_stat
+#dateinfo = date_info
+#if date_info
+#  print " | #{dateinfo}"
+#end
+puts

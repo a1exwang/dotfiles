@@ -1,0 +1,2 @@
+#!/bin/sh
+sensors | grep "Physical id 0" | cut -d " " -f 5
