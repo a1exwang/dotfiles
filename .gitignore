@@ -2,6 +2,9 @@
 # default to ignore all files in home folder
 /*
 
+# pyenv
+!/.pyenv
+
 # git stuff
 !/.gitignore
 !/.gitmodules

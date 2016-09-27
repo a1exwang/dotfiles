@@ -29,9 +29,6 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-" Press Enter to remove search highlight
-nnoremap <ENTER> :nohlsearch<cr>
-
 " For plugin command-t
 let g:CommandTMaxFiles=2000000
 " Prevent Command-t from searching .git
@@ -45,3 +42,5 @@ map <C-n> :NERDTreeToggle<CR>
 let g:NERDDefaultAlign = 'left'
 let g:NERDSpaceDelims = 1
 map <C-m> <leader>c<space>
+map <Enter> <leader>c<space>
+

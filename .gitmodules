@@ -4,9 +4,6 @@
 [submodule ".pyenv"]
 	path = .pyenv
 	url = https://github.com/yyuu/pyenv.git
-[submodule ".rvm"]
-	path = .rvm
-	url = https://github.com/rvm/rvm.git
 [submodule ".vim/bundle/vim-bundler"]
 	path = .vim/bundle/vim-bundler
 	url = git://github.com/tpope/vim-bundler.git
@@ -28,3 +25,9 @@
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = git@github.com:scrooloose/nerdcommenter.git
+[submodule "/home/alexwang/.vim/bundle/vim-orgmode"]
+	path = /home/alexwang/.vim/bundle/vim-orgmode
+	url = https://github.com/jceb/vim-orgmode
+[submodule ".vim/bundle/vim-pandoc-syntax"]
+	path = .vim/bundle/vim-pandoc-syntax
+	url = https://github.com/vim-pandoc/vim-pandoc-syntax
