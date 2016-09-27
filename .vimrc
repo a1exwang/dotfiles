@@ -58,10 +58,11 @@ map <C-n> :NERDTreeToggle<CR>
 let g:NERDDefaultAlign = 'left'
 let g:NERDSpaceDelims = 1
 
-" map <C-k> <leader>c<space>
+" Toggle comment
+map <C-_> <leader>c<space>
 
 " Press Enter to remove search highlight
 nnoremap <ENTER> :nohlsearch<cr>
 
 " Press Command-x to toggle Tagbar
-nmap \x :TagbarToggle
+nmap <Leader>x :TagbarToggle
