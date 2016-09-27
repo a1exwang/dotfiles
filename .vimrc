@@ -4,7 +4,7 @@ execute pathogen#infect()
 
 filetype plugin indent on    " required
 
-" Basic stuff
+""""""""""""""""""" Basic stuff
 set tabstop=2
 set shiftwidth=2
 set softtabstop=0 expandtab
@@ -17,6 +17,21 @@ set nofoldenable    " disable folding
 
 set shell=bash
 
+""""""""""""""""" Custom Mappings
+" gc: swap current character with the next one
+nnoremap <silent> gc xph
+" gw: swap current word with the next one
+nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+" gl: swap current word with the last one
+nnoremap <silent> gl "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+" gr: push the word right
+nnoremap <silent> gr "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
+" K: push the line up
+nnoremap <silent> K ddkkp
+" J: push the line down
+nnoremap <silent> J ddp
+
+"""""""""""""""""" Scripts
 " Rename file
 function! RenameFile()
   let old_name = expand('%')
@@ -29,6 +44,7 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
+""""""""""""""""" Plugins Configurations
 " For plugin command-t
 let g:CommandTMaxFiles=2000000
 " Prevent Command-t from searching .git
@@ -45,3 +61,6 @@ let g:NERDSpaceDelims = 1
 
 " Press Enter to remove search highlight
 nnoremap <ENTER> :nohlsearch<cr>
+
+" Press Command-x to toggle Tagbar
+nmap \x :TagbarToggle
