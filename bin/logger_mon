@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+INTERVAL = 60 * 2
+BASE = File.join(ENV['HOME'], 'var')
+loop do
+  # `thuflow > #{File.join(BASE, 'thuflow')}`
+  `route > #{File.join(BASE, 'route')}`
+  sleep INTERVAL
+end

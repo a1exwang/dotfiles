@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+def ping(addr)
+ 	result = `ping #{addr} -c 5 -q`
+
+	if result =~ /=\s+([.\d]+)\/([.\d]+)\/([.\d]+)\/([.\d]+)/
+		avg_delay = $2
+	else
+		avg_delay = "unknown"
+	end
+	if result =~ /(\d+%) packet loss/
+		loss = "#{"%0.0f" % (100 - $1.to_f)}%"
+	else
+		loss = "unknown"
+	end
+
+	avg_delay + "ms " + loss
+end
+
+
+if ARGV.size == 1
+	puts ping ARGV[0]
+elsif ARGV.size == 2
+	loop do
+		str = ping ARGV[0]
+		File.write(ARGV[1], str)
+	end
+else
+	puts "wrong argument"
+	exit
+end
+
+
