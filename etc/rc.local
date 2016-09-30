@@ -14,5 +14,5 @@ nohup /home/alexwang/bin/logger_mon > /dev/null &
 logi
 
 # sysmon monitor
-nohup indicator-sysmonitor >/dev/null &
+#nohup indicator-sysmonitor >/home/alexwang/.indicator-sysmonitor-log.log &
 
