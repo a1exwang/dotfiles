@@ -14,7 +14,7 @@ def ping(addr)
 		loss = "unknown"
 	end
 
-	avg_delay + "ms " + loss
+	avg_delay + "ms "# + loss
 end
 
 
