@@ -40,3 +40,6 @@
 [submodule ".vim/bundle/vim-pandoc"]
 	path = .vim/bundle/vim-pandoc
 	url = https://github.com/vim-pandoc/vim-pandoc
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
