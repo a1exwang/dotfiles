@@ -20,7 +20,7 @@
 
 # tmux
 !/.tmux.conf
-!/.tmux
+!/.tmux/plugins/tpm
 
 # my custom stuff
 !/.alex
