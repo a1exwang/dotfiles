@@ -16,6 +16,7 @@ set number
 set nofoldenable    " disable folding
 
 set shell=bash
+let g:solarized_termcolors=256
 
 """"""""""""""""" Custom Mappings
 " gc: swap current character with the next one
