@@ -1,0 +1,10 @@
+#!/bin/bash
+if [[ $# == 2 ]]; then
+  input=$1
+  output=$2
+
+  ffmpeg -i $input  -vf scale=480:-1 -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -loop 0 - $output
+else
+  echo "wrong argument"
+  echo $@
+fi
