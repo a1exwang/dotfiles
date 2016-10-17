@@ -40,3 +40,6 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule ".vim/bundle/Conque-GDB"]
+	path = .vim/bundle/Conque-GDB
+	url = git@github.com:vim-scripts/Conque-GDB.git

@@ -1,5 +1,2 @@
 #!/bin/sh
-setxkbmap -option caps:escape
-xset r rate 200 30
-
 /home/alexwang/etc/rc.local

@@ -21,13 +21,13 @@ def network_stat
   ifconfig = `ifconfig #{interf}`
   stat = { 'time' => Time.now, 'interface' => interf }
   
-  if ifconfig =~ /inet addr:\s*([.\d]+)/
+  if ifconfig =~ /inet\s*([.\d]+)/
     stat['ipv4_addr'] = $1
   end
-  if ifconfig =~ /inet6 addr:\s*([\w:]+).*Global/
+  if ifconfig =~ /inet6\s*([\w:]+).*Global/
     stat['ipv6_global_addr'] = $1
   end
-  if ifconfig =~ /inet6 addr:\s*([\w:]+).*Link/
+  if ifconfig =~ /inet6\s*([\w:]+).*Link/
     stat['ipv6_link_addr'] = $1
   end
   if ifconfig =~ /RX bytes:\s*(\d+)/
