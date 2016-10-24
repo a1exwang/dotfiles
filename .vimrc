@@ -16,7 +16,7 @@ set number
 set nofoldenable    " disable folding
 
 set shell=bash
-let g:solarized_termcolors=256
+set background=dark
 
 """"""""""""""""" Custom Mappings
 " gc: swap current character with the next one
@@ -62,8 +62,20 @@ let g:NERDSpaceDelims = 1
 " Toggle comment
 map <C-_> <leader>c<space>
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
 " Press Enter to remove search highlight
 nnoremap <ENTER> :nohlsearch<cr>
 
 " Press Command-x to toggle Tagbar
 nmap <Leader>x :TagbarToggle
+
