@@ -51,6 +51,9 @@ let g:CommandTMaxFiles=2000000
 " Prevent Command-t from searching .git
 let g:CommandTTraverseSCM = '/home/alexwang/find_croot'
 
+" For YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
