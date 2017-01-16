@@ -9,12 +9,16 @@ def ping(addr)
 		avg_delay = "unknown"
 	end
 	if result =~ /(\d+%) packet loss/
-		loss = "#{"%0.0f" % (100 - $1.to_f)}%"
+    loss_rate = (100 - $1.to_f)
 	else
-		loss = "unknown"
+    loss_rate = -1
 	end
 
-	avg_delay + "ms "# + loss
+  if loss_rate == 100
+    avg_delay + "ms"
+  else
+    avg_delay + "ms" + ("/%0.0f%%" % loss_rate)
+  end
 end
 
 

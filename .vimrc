@@ -32,6 +32,9 @@ nnoremap <silent> K ddkkp
 " J: push the line down
 nnoremap <silent> J ddp
 
+map gn :bn<cr>
+map gp :np<cr>
+
 """""""""""""""""" Scripts
 " Rename file
 function! RenameFile()
