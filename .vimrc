@@ -17,6 +17,9 @@ set nofoldenable    " disable folding
 
 set shell=bash
 set background=dark
+set incsearch
+set wildmenu
+set relativenumber
 
 """"""""""""""""" Custom Mappings
 " gc: swap current character with the next one

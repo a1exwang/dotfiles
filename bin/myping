@@ -1,23 +1,32 @@
 #!/usr/bin/env ruby
+require 'resolv'
 
 def ping(addr)
- 	result = `ping #{addr} -c 5 -q -W 5`
+ 	result = `ping #{addr} -c 10 -q -W 5`
 
 	if result =~ /=\s+([.\d]+)\/([.\d]+)\/([.\d]+)\/([.\d]+)/
 		avg_delay = $2
 	else
-		avg_delay = "unknown"
+		avg_delay = nil
 	end
 	if result =~ /(\d+%) packet loss/
-    loss_rate = (100 - $1.to_f)
+    loss_rate = $1.to_f
 	else
-    loss_rate = -1
+    loss_rate = 100
+    begin
+      Resolv.getaddress('www.baidu.com')
+    rescue
+      loss_rate = -1
+    end
 	end
 
-  if loss_rate == 100
+  if loss_rate == 0
     avg_delay + "ms"
+  elsif loss_rate == -1
+    "DNS failure"
   else
-    avg_delay + "ms" + ("/%0.0f%%" % loss_rate)
+    (avg_delay ? (avg_delay + "ms/") : '') + 
+      ("%0.0f%% loss" % loss_rate)
   end
 end
 

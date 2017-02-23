@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-nohup google-chrome-stable &> /dev/null &
+nohup google-chrome-stable $@ &> /dev/null &
