@@ -72,12 +72,15 @@ def network_stat
   ret += "\u2193#{Filesize.from(stat['download_bytes'].to_s + " B").pretty}]"
   ret += " IPv6" if stat.key?('ipv6_addr')
   ret += " #{stat['ipv4_addr']}"   
-  if interf == 'wlp2s0' && `iwconfig wlp2s0 2> /dev/null` =~ /ESSID:"([^"]+)"/
+
+  `iwconfig #{interf} &> /dev/null`
+
+  if $?.exitstatus == 0 && `iwconfig #{interf} 2> /dev/null` =~ /ESSID:"([^"]+)"/
     ret += ' ' + $1
   else
     ret += ' ' + stat['interface'].to_s
   end
-  
+
   ret
 end
 
