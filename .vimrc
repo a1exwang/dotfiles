@@ -60,6 +60,15 @@ let g:CommandTTraverseSCM = '/home/alexwang/find_croot'
 " For YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
+" For python-mode
+let g:pymode_python = 'python3'
+map <C-g> :RopeGotoDefinition<CR>
+let g:pymode_rope_goto_def_newwin = 1
+
+" For vim-yankstack
+nmap <C-p> <Plug>yankstack_substitute_older_paste
+nmap <C-P> <Plug>yankstack_substitute_newer_paste
+
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
 

@@ -79,3 +79,9 @@
 [submodule ".oh-my-fish"]
 	path = .oh-my-fish
 	url = https://github.com/oh-my-fish/oh-my-fish
+[submodule ".vim/bundle/python-mode"]
+	path = .vim/bundle/python-mode
+	url = https://github.com/klen/python-mode.git
+[submodule ".vim/bundle/vim-yankstack"]
+	path = .vim/bundle/vim-yankstack
+	url = https://github.com/maxbrunsfeld/vim-yankstack.git

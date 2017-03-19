@@ -16,12 +16,12 @@ VAR = File.join(ENV['HOME'], 'var')
 ETC = File.join(ENV['HOME'], 'etc')
 LOG_FILE_PATH = File.join(VAR, 'indicator.log')
 
-def network_stat
+def get_if_info
   `cat "#{File.join(VAR, 'route')}" | grep -E "default|0\\.0\\.0\\.0" -m 1` =~ /dev (\w+)/
   interf = $1
   ifconfig = `ip -s addr show dev #{interf}`
   stat = { 'time' => Time.now, 'interface' => interf }
-  
+
   if ifconfig =~ /inet\s*([.\d]+)/
     stat['ipv4_addr'] = $1
   end
@@ -36,6 +36,26 @@ def network_stat
   tx_bytes = lines[-1].strip.split[0].to_i
   stat['download_bytes'] = rx_bytes
   stat['upload_bytes'] = tx_bytes
+
+  return interf, stat
+end
+
+def format_filesize(size)
+  s, unit = Filesize.from(size.to_s + " B").pretty.split
+  s = "%03d.%02d" % [s.to_i, (s*100).to_i % 100]
+  "#{s} #{unit}" 
+end
+
+
+def format_string(stat)
+  "↑%s ↓%s [Data Usage: ↑%s↓%s] %s %s" %
+    stat['']
+end
+
+
+def network_stat
+  interf, stat = get_if_info
+  
   return '' unless stat.key?('ipv4_addr')
 
   last_stat = {}
