@@ -2,7 +2,7 @@
 require 'filesize'
 require 'time'
 require 'json'
-require_relative 'lib/thuflow'
+# require_relative 'lib/thuflow'
 WEEKDAYS = [
   {name: "Mon", emoji: '😾'},
   {name: "Tue", emoji: '😜'},
@@ -17,25 +17,25 @@ ETC = File.join(ENV['HOME'], 'etc')
 LOG_FILE_PATH = File.join(VAR, 'indicator.log')
 
 def network_stat
-  interf = `cat "#{File.join(VAR, 'route')}" | grep default -m 1`.split.last
-  ifconfig = `ifconfig #{interf}`
+  `cat "#{File.join(VAR, 'route')}" | grep -E "default|0\\.0\\.0\\.0" -m 1` =~ /dev (\w+)/
+  interf = $1
+  ifconfig = `ip -s addr show dev #{interf}`
   stat = { 'time' => Time.now, 'interface' => interf }
   
-  if ifconfig =~ /inet addr:\s*([.\d]+)/
+  if ifconfig =~ /inet\s*([.\d]+)/
     stat['ipv4_addr'] = $1
   end
-  if ifconfig =~ /inet6 addr:\s*([\w:]+).*Global/
+  if ifconfig =~ /inet6\s*([\w:]+).*Global/
     stat['ipv6_global_addr'] = $1
   end
-  if ifconfig =~ /inet6 addr:\s*([\w:]+).*Link/
+  if ifconfig =~ /inet6\s*([\w:]+).*Link/
     stat['ipv6_link_addr'] = $1
   end
-  if ifconfig =~ /RX bytes:\s*(\d+)/
-    stat['download_bytes'] = $1.to_i
-  end
-  if ifconfig =~ /TX bytes:\s*(\d+)/
-    stat['upload_bytes'] = $1.to_i
-  end
+  lines = ifconfig.split("\n")
+  rx_bytes = lines[-3].strip.split[0].to_i
+  tx_bytes = lines[-1].strip.split[0].to_i
+  stat['download_bytes'] = rx_bytes
+  stat['upload_bytes'] = tx_bytes
   return '' unless stat.key?('ipv4_addr')
 
   last_stat = {}
@@ -72,7 +72,7 @@ def network_stat
   ret += "\u2193#{Filesize.from(stat['download_bytes'].to_s + " B").pretty}]"
   ret += " IPv6" if stat.key?('ipv6_addr')
   ret += " #{stat['ipv4_addr']}"   
-  if `iwconfig wlp2s0 2> /dev/null` =~ /ESSID:"([^"]+)"/
+  if interf == 'wlp2s0' && `iwconfig wlp2s0 2> /dev/null` =~ /ESSID:"([^"]+)"/
     ret += ' ' + $1
   else
     ret += ' ' + stat['interface'].to_s

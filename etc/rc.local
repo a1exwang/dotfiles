@@ -15,6 +15,10 @@ nohup /home/alexwang/bin/logger_mon > /dev/null &
 # configure mouse speed
 logi
 
+setxkbmap -option caps:escape
+xset r rate 200 30
+
+
 # sysmon monitor
 #nohup indicator-sysmonitor >/home/alexwang/.indicator-sysmonitor-log.log &
 
