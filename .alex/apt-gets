@@ -1,0 +1,3 @@
+apt-get install wget curl ruby ruby-dev axel openssh-server
+apt-get install libreadline-dev libbz2-dev libsqlite3-dev
+apt-get install exuberant-ctags
