@@ -21,7 +21,7 @@ def ping(addr)
 	end
 
   if loss_rate == 0
-    avg_delay + "ms"
+    "%.0fms" % avg_delay.to_f
   elsif loss_rate == -1
     "DNS failure"
   else

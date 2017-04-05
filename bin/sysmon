@@ -19,6 +19,7 @@ LOG_FILE_PATH = File.join(VAR, 'indicator.log')
 def get_if_info
   `cat "#{File.join(VAR, 'route')}" | grep -E "default|0\\.0\\.0\\.0" -m 1` =~ /dev (\w+)/
   interf = $1
+  return nil if interf.nil?
   ifconfig = `ip -s addr show dev #{interf}`
   stat = { 'time' => Time.now, 'interface' => interf }
 
@@ -56,6 +57,7 @@ end
 def network_stat
   interf, stat = get_if_info
   
+  return 'No default route' unless interf && stat
   return '' unless stat.key?('ipv4_addr')
 
   last_stat = {}
