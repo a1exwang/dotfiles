@@ -93,7 +93,7 @@ def network_stat
   ret += " IPv6" if stat.key?('ipv6_addr')
   ret += " #{stat['ipv4_addr']}"   
 
-  `iwconfig #{interf} &> /dev/null`
+  `bash -c "iwconfig #{interf} &> /dev/null"`
 
   if $?.exitstatus == 0 && `iwconfig #{interf} 2> /dev/null` =~ /ESSID:"([^"]+)"/
     ret += ' ' + $1

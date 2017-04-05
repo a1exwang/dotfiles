@@ -11,24 +11,24 @@ nohup myping hk.a1ex.wang /home/alexwang/var/buffer/hk.ping > /dev/null &
 
 # logger daemon
 nohup /home/alexwang/bin/logger_mon > /dev/null &
+# Only do these when XWindow is available
+if ! [ -z ${DISPLAY+x} ]; then
+  # configure mouse speed
+  logi
 
-# configure mouse speed
-logi
+  setxkbmap -option caps:escape
+  xset r rate 200 30
 
-setxkbmap -option caps:escape
-xset r rate 200 30
+  synclient TapButton2=3
+  synclient TapButton3=2
+  synclient ClickFinger2=3
+  synclient ClickFinger3=2
+  synclient PalmDetect=1
 
-synclient TapButton2=3
-synclient TapButton3=2
-synclient ClickFinger2=3
-synclient ClickFinger3=2
-synclient PalmDetect=1
+  # sysmon monitor
+  #nohup indicator-sysmonitor >/home/alexwang/.indicator-sysmonitor-log.log &
 
-
-# sysmon monitor
-#nohup indicator-sysmonitor >/home/alexwang/.indicator-sysmonitor-log.log &
-
-setxkbmap -option caps:escape
-xset r rate 200 30
-
+  setxkbmap -option caps:escape
+  xset r rate 200 30
+fi
 
