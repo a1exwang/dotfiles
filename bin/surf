@@ -1,0 +1,5 @@
+#!/bin/bash
+interface=$1
+
+sudo ip l set $interface up
+sudo dhclient $interface

@@ -2,7 +2,7 @@
 require 'resolv'
 
 def ping(addr)
- 	result = `ping #{addr} -c 10 -q -W 5`
+ 	result = `ping #{addr} -c 10 -q -W 5 2> /dev/null`
 
 	if result =~ /=\s+([.\d]+)\/([.\d]+)\/([.\d]+)\/([.\d]+)/
 		avg_delay = $2
@@ -21,21 +21,23 @@ def ping(addr)
 	end
 
   if loss_rate == 0
-    "%.0fms" % avg_delay.to_f
+    return "%.0fms" % avg_delay.to_f, :ok
   elsif loss_rate == -1
-    "DNS failure"
+    return "DNS failure", :dns
   else
-    (avg_delay ? (avg_delay + "ms/") : '') + 
-      ("%0.0f%% loss" % loss_rate)
+    return (avg_delay ? (avg_delay + "ms/") : '') + 
+      ("%0.0f%% loss" % loss_rate), :ok
   end
 end
 
 
 if ARGV.size == 1
-	puts ping ARGV[0]
+  str, status = ping ARGV[0]
+	puts str
 elsif ARGV.size == 2
 	loop do
-		str = ping ARGV[0]
+		str, status = ping ARGV[0]
+    sleep 2 if status == :dns
 		File.write(ARGV[1], str)
 	end
 else
