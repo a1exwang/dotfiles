@@ -85,3 +85,9 @@
 [submodule ".vim/bundle/vim-yankstack"]
 	path = .vim/bundle/vim-yankstack
 	url = https://github.com/maxbrunsfeld/vim-yankstack.git
+[submodule ".vim/bundle/matchit"]
+	path = .vim/bundle/matchit
+	url = https://github.com/tmhedberg/matchit.git
+[submodule ".vim/bundle/jedi-vim"]
+	path = .vim/bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git

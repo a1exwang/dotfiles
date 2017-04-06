@@ -20,6 +20,7 @@ set background=dark
 set incsearch
 set wildmenu
 set relativenumber
+let mapleader = ","
 
 """"""""""""""""" Custom Mappings
 " gc: swap current character with the next one
