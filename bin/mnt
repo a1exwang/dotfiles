@@ -1,0 +1,38 @@
+#!/bin/bash
+set -xe
+device=$1
+name=$2
+
+if ! [ -b $device ]; then
+  echo "$device is not a block device"
+  exit 1
+fi
+
+fs=$(blkid $device | ruby -e 'STDIN.read =~ /TYPE="([^"]+)"/; print $1')
+label=$(blkid $device | ruby -e 'STDIN.read =~ /LABEL="([^"]+)"/; print $1')
+if [ -z "$name" ]; then
+  if [ -z "$label" ]; then
+    echo "No device name specified"
+    exit 1
+  fi
+  name=$label
+fi
+
+realname=$name
+realpath=/media/alexwang/$realname
+i=0
+while [ -d $realpath ] && (mountpoint -q $realpath); do
+  realname="${name}$i"
+  realpath=/media/alexwang/$realname
+  i=$(expr $i + 1)
+done
+
+if [[ "$fs" == "ext4" ]]; then
+  echo "mounting $device at $realpath"
+else
+  printf "Unknown filesystem '%s' for '%s'" "$fs" "$device"
+  exit 2
+fi
+
+mkdir -p $realpath
+sudo mount $device $realpath

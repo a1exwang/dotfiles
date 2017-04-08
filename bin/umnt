@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+mount_point="$1"
+if mountpoint -q $mount_point; then
+  sudo umount $mount_point
+  files="$(ls -A $mount_point)"
+  if [ -z $files ]; then
+    sudo rmdir $mount_point
+  else
+    echo "directory '$mount_point' is not empty"
+  fi
+else
+  echo "$mount_point is not a mount point"
+  exit 1
+fi
