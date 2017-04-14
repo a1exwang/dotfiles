@@ -2,3 +2,4 @@ apt-get install wget curl ruby ruby-dev axel openssh-server
 apt-get install libreadline-dev libbz2-dev libsqlite3-dev
 apt-get install exuberant-ctags libncurses-dev locate tcl-dev lzma-dev 
 apt-get install psmisc wireless-tools lm-sensors
+apt-get install checkinstall

@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require 'filesize'
+
+def usage
+  puts <<~EOF
+    Usage: ./flow INTERFACE [filter_options]
+      
+      INTERFACE: network interfaces you would like to capture
+      filter_options: tcpdump-compatible filter options
+  EOF
+end
+
+interf = ARGV[0]
+if interf.nil?
+  usage
+  exit 1
+end
+@cmd_line = "tcpdump -i #{interf} -n -e -q \"#{ARGV[1..-1].join(' ')}\" 2> /dev/null"
+@total=0
+@last=0
+@options = {
+  interval: 0.5,
+}
+
+IO.popen(@cmd_line, 'r') do |io|
+  @m=Mutex.new 
+  Thread.new do 
+    loop do 
+      sleep(@options[:interval])
+      last = Filesize.new(@last / @options[:interval]).pretty
+      total = Filesize.new(@total).pretty
+      STDOUT.print "#{Time.now.strftime('%Y-%m-%dT%H:%M:%S.%6N')} #{last}/s #{total}\n"
+      STDOUT.flush
+      @m.synchronize do
+        @last=0
+      end
+    end
+  end
+
+  loop do 
+    line = io.gets
+    exit 1 if line.nil?
+    n = line.split[-1].to_i
+    @m.synchronize do 
+      @last += n
+      @total += n
+    end
+  end
+end
+
