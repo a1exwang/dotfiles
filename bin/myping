@@ -38,7 +38,7 @@ elsif ARGV.size == 2
 	loop do
 		str, status = ping ARGV[0]
     sleep 2 if status == :dns
-		File.write(ARGV[1], str)
+		File.write(ARGV[1], str + "\r")
 	end
 else
 	puts "wrong argument"

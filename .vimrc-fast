@@ -4,6 +4,7 @@
 filetype plugin indent on    " required
 
 """"""""""""""""""" Basic stuff
+set nocompatible
 set tabstop=2
 set shiftwidth=2
 set softtabstop=0 expandtab
