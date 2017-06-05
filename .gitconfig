@@ -6,6 +6,7 @@
 [user]
 	email = ice_b0und@hotmail.com
 	name = Alex Wang
+	signingkey = E4A09320883E2BB5
 [alias]
 	co = checkout
 	ci = commit
