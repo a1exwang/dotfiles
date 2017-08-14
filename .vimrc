@@ -20,7 +20,21 @@ set background=dark
 set incsearch
 set wildmenu
 set relativenumber
+
 let mapleader = ","
+
+" Do not clear clipboard after exiting/suspending
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
+nnoremap <C-z> :call system("xsel -ib", getreg('+'))<CR><C-z>
+
+" Resolves the bug ^[[O !!!
+" Add save-on-focus-lost feature
+" https://github.com/tmux-plugins/vim-tmux-focus-events/issues/2
+function! MyFocusLost()
+  silent redraw!
+  wa
+endfunction
+au FocusLost * call MyFocusLost()
 
 """"""""""""""""" Custom Mappings
 " gc: swap current character with the next one

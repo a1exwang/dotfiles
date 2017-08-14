@@ -10,8 +10,10 @@
 [alias]
 	co = checkout
 	ci = commit
+  c = commit
 	st = status
 	br = branch
+  l = log
 [color]
 	ui = auto
 [diff]

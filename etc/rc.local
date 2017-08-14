@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # shadowsocks
-nohup sslocal -s jp6.grep-v.org -k ygbkm+1995 -m aes-192-cfb -p 8124 -l 1081 > /dev/null &
-nohup sslocal -s jp.grep-v.org -k ygbkm+1995 -m aes-192-cfb -p 8124 -l 1082 > /dev/null &
+nohup sslocal -s jp6.grep-v.org -k ygbkm+1995 -m aes-192-cfb -p 8124 -l 1081 > ~/var/ss.jp6.log &
+nohup sslocal -s jp.grep-v.org -k ygbkm+1995 -m aes-192-cfb -p 8124 -l 1082 > ~/var/ss.jp.log &
 
 # ping server 
 nohup myping jp.grep-v.org /home/alexwang/var/buffer/jp.ping > /dev/null &
