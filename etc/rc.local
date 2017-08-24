@@ -6,7 +6,6 @@ nohup sslocal -s jp.grep-v.org -k ygbkm+1995 -m aes-192-cfb -p 8124 -l 1082 > ~/
 
 # ping server 
 nohup myping jp.grep-v.org /home/alexwang/var/buffer/jp.ping > /dev/null &
-nohup myping v.grep-v.org /home/alexwang/var/buffer/sf.ping > /dev/null &
 
 # logger daemon
 nohup /home/alexwang/bin/logger_mon > /dev/null &

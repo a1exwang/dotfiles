@@ -23,6 +23,11 @@ set relativenumber
 
 let mapleader = ","
 
+" Remember last cursor position after exiting
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 " Do not clear clipboard after exiting/suspending
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
 nnoremap <C-z> :call system("xsel -ib", getreg('+'))<CR><C-z>
@@ -32,7 +37,7 @@ nnoremap <C-z> :call system("xsel -ib", getreg('+'))<CR><C-z>
 " https://github.com/tmux-plugins/vim-tmux-focus-events/issues/2
 function! MyFocusLost()
   silent redraw!
-  wa
+  " wa
 endfunction
 au FocusLost * call MyFocusLost()
 
