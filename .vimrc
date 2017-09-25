@@ -30,7 +30,12 @@ endif
 
 " Do not clear clipboard after exiting/suspending
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
-nnoremap <C-z> :call system("xsel -ib", getreg('+'))<CR><C-z>
+nnoremap <C-z> :call MyOnExit() <CR><C-z>
+
+function! MyOnExit()
+  " if strlen(getreg('+')) > 0
+  call system("xsel -ib", getreg('+'))
+endfunction
 
 " Resolves the bug ^[[O !!!
 " Add save-on-focus-lost feature

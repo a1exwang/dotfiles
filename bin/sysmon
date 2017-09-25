@@ -43,8 +43,8 @@ end
 
 def format_filesize(size)
   s, unit = Filesize.from(size.to_s + " B").pretty.split
-  s = "%03d.%02d" % [s.to_i, (s*100).to_i % 100]
-  "#{s} #{unit}" 
+  s = "%03d" % [s.to_i, (s*100).to_i % 100]
+  s + ' ' + unit
 end
 
 
@@ -76,22 +76,11 @@ def network_stat
     downrate = 0 if downrate < 0
   end
 
-  if uprate < 0
-    ret = " \u2191<1 KiB/s"
-  else
-    s, unit = Filesize.from(uprate.to_s + " B").pretty.split
-    s = "%03d.%02d" % [s.to_i, (s*100).to_i % 100]
-    ret = " \u2191#{s} #{unit}/s" 
-  end
-  if downrate < 1024
-    ret += " \u2193<1 KiB/s"
-  else
-    s, unit = Filesize.from(downrate.to_s + " B").pretty.split
-    s = "%03d.%02d" % [s.to_i, (s*100).to_i % 100]
-    ret += " \u2193#{s} #{unit}/s"
-  end
-  ret += " [Data Usage: \u2191#{Filesize.from(stat['upload_bytes'].to_s + " B").pretty}"
-  ret += "\u2193#{Filesize.from(stat['download_bytes'].to_s + " B").pretty}]"
+  ret = ''
+  ret += "[\u2191#{format_filesize(stat['upload_bytes'].to_s)}"
+  ret += " \u2193#{format_filesize(stat['download_bytes'].to_s)}]"
+  ret += "\u2191" + format_filesize(uprate)
+  ret += "\u2193" + format_filesize(downrate)
   ret += " IPv6" if stat.key?('ipv6_addr')
   ret += " #{stat['ipv4_addr']}"   
 
