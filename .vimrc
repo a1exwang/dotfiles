@@ -60,6 +60,20 @@ nnoremap <silent> K ddkkp
 " J: push the line down
 nnoremap <silent> J ddp
 
+""""""""""""""""" Emacs Keybindings in insert mode
+" insert mode
+imap <C-b> <Left>
+imap <C-f> <Right>
+imap <C-p> <Up>
+imap <C-n> <Down>
+
+imap <C-a> <C-o>:call <SID>home()<CR>
+imap <C-e> <End>
+imap <C-d> <Del>
+imap <C-h> <BS>
+imap <C-k> <C-r>=<SID>kill_line()<CR>
+" imap <C-w> ??? We don't need this because vim already has it.
+
 map gn :bn<cr>
 map gp :np<cr>
 
@@ -121,4 +135,3 @@ nnoremap <ENTER> :nohlsearch<cr>
 
 " Press Command-x to toggle Tagbar
 nmap <Leader>x :TagbarToggle
-

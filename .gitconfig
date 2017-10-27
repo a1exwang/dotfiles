@@ -19,3 +19,5 @@
 	ui = auto
 [diff]
 	tool = meld
+[commit]
+	gpgsign = true
