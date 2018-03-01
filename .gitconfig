@@ -20,4 +20,6 @@
 [diff]
 	tool = meld
 [commit]
-	gpgsign = true
+	gpgsign = false
+[core]
+	editor = vim

@@ -60,6 +60,9 @@ nnoremap <silent> K ddkkp
 " J: push the line down
 nnoremap <silent> J ddp
 
+command W w !sudo tee % > /dev/null
+" command C w !sudo tee % > /dev/null <bar> q!
+
 """"""""""""""""" Emacs Keybindings in insert mode
 " insert mode
 imap <C-b> <Left>
@@ -67,7 +70,7 @@ imap <C-f> <Right>
 imap <C-p> <Up>
 imap <C-n> <Down>
 
-imap <C-a> <C-o>:call <SID>home()<CR>
+imap <C-a> <Home>
 imap <C-e> <End>
 imap <C-d> <Del>
 imap <C-h> <BS>
@@ -91,13 +94,18 @@ endfunction
 map <leader>n :call RenameFile()<cr>
 
 """"""""""""""""" Plugins Configurations
+" For plugin auto-ctags
+let g:auto_ctags = 1
+let g:auto_ctags_directory_list = ['.git', '.svn']
+
 " For plugin command-t
 let g:CommandTMaxFiles=2000000
 " Prevent Command-t from searching .git
 let g:CommandTTraverseSCM = '/home/alexwang/find_croot'
 
 " For YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/home/alexwang/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_server_python_interpreter = '/usr/bin/python2'
 
 " For python-mode
 let g:pymode_python = 'python3'

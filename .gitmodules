@@ -95,19 +95,19 @@
 	path = .vim/bundle/vitality.vim
 	url = https://github.com/sjl/vitality.vim.git
 [submodule ".vim/bundle/vim-instant-markdown"]
-	path = /home/alexwang/.vim/bundle/vim-instant-markdown
+	path = .vim/bundle/vim-instant-markdown
 	url = https://github.com/suan/vim-instant-markdown.git
 [submodule ".vim/bundle/syntastic"]
-	path = /home/alexwang/.vim/bundle/syntastic
+	path = .vim/bundle/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
 [submodule ".vim/bundle/vim-go"]
-	path = /home/alexwang/.vim/bundle/vim-go
+	path = .vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
 [submodule ".vim/bundle/vim-main"]
-	path = /home/alexwang/.vim/bundle/vim-main
+	path = .vim/bundle/vim-main
 	url = https://github.com/vim-utils/vim-man.git
 [submodule ".vim/bundle/auto-ctags"]
-	path = /home/alexwang/.vim/bundle/auto-ctags
+	path = .vim/bundle/auto-ctags
 	url = https://github.com/soramugi/auto-ctags.vim.git
 [submodule ".vim/bundle/vim-easytags"]
 	path = .vim/bundle/vim-easytags
@@ -116,5 +116,8 @@
 	path = .vim/bundle/vim-misc
 	url = https://github.com/xolox/vim-misc.git
 [submodule ".vim/bundle/rust"]
-	path = /home/alexwang/.vim/bundle/rust
+	path = .vim/bundle/rust
 	url = https://github.com/rust-lang/rust.vim.git
+[submodule ".vim/bundle/gocode"]
+	path = .vim/bundle/gocode
+	url = https://github.com/nsf/gocode.git

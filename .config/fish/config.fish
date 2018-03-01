@@ -1,14 +1,16 @@
 setxkbmap -option caps:escape
 xset r rate 200 30
 
-set -x HADOOP_HOME "/usr/local/hadoop-2.8.1"
-set -x GOPATH "$HOME/.go"
-set -x PATH "$HOME/.pyenv/bin" $PATH
+set -gx PYENV_ROOT "$HOME/.pyenv"
+set -gx PATH "$PYENV_ROOT/bin" $PATH
+
+
 set -x PATH "$HADOOP_HOME/bin" $PATH
 set -x PATH "$HOME/bin" $PATH
-set -x GOPATH "$HOME/.go"
-set -x GOROOT $HOME/go
+set -x PATH "/usr/lib/ccache/bin" $PATH
+set -x GOPATH "$HOME/go"
 set -x PATH "$GOPATH/bin" $PATH
+#set -x GOROOT $HOME/go
 export SSH_AUTH_SOCK=(gpgconf --list-dirs agent-ssh-socket)
 export GPG_TTY=(tty)
 gpgconf --launch gpg-agent
@@ -16,22 +18,24 @@ gpgconf --launch gpg-agent
 set -x WTF_DB_PATH "$HOME/dev/proj/wtf_you_must_know"
 
 # For pyenv
-set -gx PATH '/home/alexwang/.pyenv/shims' $PATH
-set -gx PYENV_SHELL fish
-. '/home/alexwang/.pyenv/libexec/../completions/pyenv.fish'
-command pyenv rehash 2>/dev/null
-function pyenv
-  set command $argv[1]
-  set -e argv[1]
+# set -gx PATH '/home/alexwang/.pyenv/shims' $PATH
+# set -gx PYENV_SHELL fish
+# . '/home/alexwang/.pyenv/libexec/../completions/pyenv.fish'
+# command pyenv rehash 2>/dev/null
+# function pyenv
+#   set command $argv[1]
+#   set -e argv[1]
 
-  switch "$command"
-  case rehash shell
-    . (pyenv "sh-$command" $argv|psub)
-  case '*'
-    command pyenv "$command" $argv
-  end
-end
+#   switch "$command"
+#   case rehash shell
+#     . (pyenv "sh-$command" $argv|psub)
+#   case '*'
+#     command pyenv "$command" $argv
+#   end
+# end
 
+set -x PATH "./bin" $PATH
+export PATH="$HOME/.cargo/bin:$PATH"
 
 function fish_user_key_bindings
   bind \cr 'peco_select_history (commandline -b)'
@@ -56,4 +60,9 @@ alias manage-prod-shell "python manage.py shell --settings=conf.production.setti
 alias manage-test-shell "python manage.py shell --settings=conf.testing.settings"
 alias , "cd .."
 alias gpg gpg2
+
+set -gx LD_PRELOAD /usr/lib/libstderred.so
+
+eval (ssh-agent -c) > /dev/null
+status --is-interactive; and source (pyenv init -|psub)
 #rvm default
