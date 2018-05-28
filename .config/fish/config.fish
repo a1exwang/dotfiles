@@ -5,6 +5,7 @@ set -gx PYENV_ROOT "$HOME/.pyenv"
 set -gx PATH "$PYENV_ROOT/bin" $PATH
 
 
+set -x PATH "/opt/cuda/bin/" $PATH
 set -x PATH "$HADOOP_HOME/bin" $PATH
 set -x PATH "$HOME/bin" $PATH
 set -x PATH "/usr/lib/ccache/bin" $PATH
