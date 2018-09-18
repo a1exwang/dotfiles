@@ -1,9 +1,9 @@
 #!/bin/bash
-
 # shadowsocks
 # nohup sslocal -s jp6.grep-v.org -k ygbkm+1995 -m aes-256-cfb -p 8124 -l 1081 > ~/var/ss6.jp6.log &
 # vultr jp
-nohup sslocal -s jp.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1082 > ~/var/ss.jp.log &
+nohup sslocal -s 45.32.44.171 -k ygbkm+1995 -m chacha20 -p 8124 -l 1083 > ~/var/ss.jp.log &
+nohup sslocal -s jp2.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1082 > ~/var/ss.jp.log &
 # dallas
 # nohup obfs-local -s 192.138.210.94 -p 8080 -l 1088 --obfs http --obfs-host www.baidu.com > ~/var/obfs.dallas.log &
 # sleep 1
@@ -17,8 +17,11 @@ cd -
 sleep 1
 nohup sslocal -s 192.168.206.1 -m chacha20 -k ygbkm+1995 -p 8124 -l 10803 > ~/var/ss.dallas.udp.log &
 
+killall myping
 # ping server 
-nohup myping 192.138.210.94 /home/alexwang/var/buffer/jp.ping > /dev/null &
+nohup myping jp2.wtmsb.wtf /home/alexwang/var/buffer/jp2.ping > /dev/null &
+nohup myping jp.wtmsb.wtf /home/alexwang/var/buffer/jp.ping > /dev/null &
+
 
 # logger daemon
 nohup /home/alexwang/bin/logger_mon > /dev/null &
@@ -41,4 +44,5 @@ if ! [ -z ${DISPLAY+x} ]; then
   setxkbmap -option caps:escape
   xset r rate 200 30
 fi
+xhost +local:root
 

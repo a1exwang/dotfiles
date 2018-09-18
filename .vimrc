@@ -105,7 +105,7 @@ let g:CommandTTraverseSCM = '/home/alexwang/find_croot'
 
 " For YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '/home/alexwang/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_server_python_interpreter = '/usr/bin/python2'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 
 " For python-mode
 let g:pymode_python = 'python3'
@@ -143,3 +143,5 @@ nnoremap <ENTER> :nohlsearch<cr>
 
 " Press Command-x to toggle Tagbar
 nmap <Leader>x :TagbarToggle
+
+let g:ConqueGdb_Disable = 1

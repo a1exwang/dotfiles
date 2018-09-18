@@ -65,5 +65,14 @@ alias gpg gpg2
 set -gx LD_PRELOAD /usr/lib/libstderred.so
 
 eval (ssh-agent -c) > /dev/null
-status --is-interactive; and source (pyenv init -|psub)
-#rvm default
+
+function ssh
+  if echo $TERM | grep screen > /dev/null
+    env TERM=screen ssh $argv
+  else
+    ssh $argv
+  end
+end
+
+#status --is-interactive; and source (pyenv init -|psub)
+rvm default

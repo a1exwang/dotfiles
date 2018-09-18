@@ -2,6 +2,7 @@
 list = `xinput --list` 
 list.each_line do |l|
  	if l =~ /Logitech.*id=(\d+)/
-    `xinput set-prop #{$1} "libinput Accel Speed" -0.7`
+    puts "setting #{l}"
+    `xinput set-prop #{$1} "libinput Accel Speed" 0`
  	end 
 end

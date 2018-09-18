@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 DPI=$(xdpyinfo | grep resolution | awk '{print $2}' | cut -d x -f 1)
-if [[ $DPI -gt 180 ]]; then
+if [[ $DPI -gt 93 ]]; then
   FACTOR=2
 else
   FACTOR=1
 fi
-nohup google-chrome-stable --force-device-scale-factor=$FACTOR $* &> /dev/null &
+nohup google-chrome-stable --high-dpi-support=1 --force-device-scale-factor=$FACTOR $* &> /dev/null &

@@ -100,9 +100,6 @@
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
-[submodule ".vim/bundle/vim-go"]
-	path = .vim/bundle/vim-go
-	url = https://github.com/fatih/vim-go.git
 [submodule ".vim/bundle/vim-main"]
 	path = .vim/bundle/vim-main
 	url = https://github.com/vim-utils/vim-man.git
@@ -121,3 +118,15 @@
 [submodule ".vim/bundle/gocode"]
 	path = .vim/bundle/gocode
 	url = https://github.com/nsf/gocode.git
+[submodule "/home/alexwang/.vim/bundle/vim-cmake-syntax"]
+	path = /home/alexwang/.vim/bundle/vim-cmake-syntax
+	url = git://github.com/pboettch/vim-cmake-syntax.git
+[submodule "/home/alexwang/.vim/bundle/Conque-GDB"]
+	path = /home/alexwang/.vim/bundle/Conque-GDB
+	url = https://github.com/vim-scripts/Conque-GDB.git
+[submodule "/home/alexwang/.vim/bundle/vim-go"]
+	path = /home/alexwang/.vim/bundle/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "/home/alexwang/.vim/bundle/ag"]
+	path = /home/alexwang/.vim/bundle/ag
+	url = https://github.com/brookhong/ag.vim.git
