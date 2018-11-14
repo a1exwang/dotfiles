@@ -74,5 +74,11 @@ function ssh
   end
 end
 
-#status --is-interactive; and source (pyenv init -|psub)
+function gvm
+  bass source ~/.gvm/scripts/gvm ';' gvm $argv
+end
+
+bass source "/home/alexwang/.gvm/scripts/gvm"
+export _JAVA_AWT_WM_NONREPARENTING=1
+status --is-interactive; and source (pyenv init -|psub)
 rvm default

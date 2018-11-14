@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 DPI=$(xdpyinfo | grep resolution | awk '{print $2}' | cut -d x -f 1)
-if [[ $DPI -gt 93 ]]; then
+if [[ $DPI -gt 100 ]]; then
   FACTOR=2
 else
   FACTOR=1

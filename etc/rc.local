@@ -1,27 +1,21 @@
 #!/bin/bash
-# shadowsocks
-# nohup sslocal -s jp6.grep-v.org -k ygbkm+1995 -m aes-256-cfb -p 8124 -l 1081 > ~/var/ss6.jp6.log &
-# vultr jp
-nohup sslocal -s 45.32.44.171 -k ygbkm+1995 -m chacha20 -p 8124 -l 1083 > ~/var/ss.jp.log &
-nohup sslocal -s jp2.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1082 > ~/var/ss.jp.log &
-# dallas
-# nohup obfs-local -s 192.138.210.94 -p 8080 -l 1088 --obfs http --obfs-host www.baidu.com > ~/var/obfs.dallas.log &
-# sleep 1
-# nohup sslocal -s 127.0.0.1 -m chacha20 -k ygbkm+1995 -p 1088 -l 10801 > ~/var/ss.dallas.log &
-nohup sslocal -s 192.138.210.94 -m chacha20 -k ygbkm+1995 -p 8124 -l 10802 > ~/var/ss.dallas.8124.log &
-# nohup sslocal -s sf1.grep-v.org -k ygbkm+1995 -m aes-192-cfb -p 8123 -l 1083 > ~/var/sf1.jp.log &
 
-cd /home/alexwang/dev/proj/cpp/udptunnel
-sudo ./client 192.138.210.94 53 123 &
-cd -
-sleep 1
-nohup sslocal -s 192.168.206.1 -m chacha20 -k ygbkm+1995 -p 8124 -l 10803 > ~/var/ss.dallas.udp.log &
+# Linode Tokyo
+nohup sslocal -s 45.32.44.171 -k ygbkm+1995 -m chacha20 -p 8124 -l 1084 > ~/var/ss.jp.log &
+# Vultr Tokyo
+nohup sslocal -s jp2.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1086 > ~/var/ss.jp.log &
+
+# cd /home/alexwang/dev/proj/cpp/udptunnel
+# sudo ./client 192.138.210.94 53 123 &
+# cd -
+# sleep 1
+# nohup sslocal -s 192.168.206.1 -m chacha20 -k ygbkm+1995 -p 8124 -l 10803 > ~/var/ss.dallas.udp.log &
 
 killall myping
 # ping server 
 nohup myping jp2.wtmsb.wtf /home/alexwang/var/buffer/jp2.ping > /dev/null &
 nohup myping jp.wtmsb.wtf /home/alexwang/var/buffer/jp.ping > /dev/null &
-
+# nohup mytcping 139.219.7.51 4002 /home/alexwang/var/buffer/azjp1.ping > /dev/null &
 
 # logger daemon
 nohup /home/alexwang/bin/logger_mon > /dev/null &
