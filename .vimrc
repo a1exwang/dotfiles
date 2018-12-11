@@ -104,8 +104,14 @@ let g:CommandTMaxFiles=2000000
 let g:CommandTTraverseSCM = '/home/alexwang/find_croot'
 
 " For YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '/home/alexwang/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf = '/home/alexwang/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_goto_buffer_command = 'vertical-split'
+nnoremap <C-h> :YcmCompleter GoTo<cr>
+nnoremap <C-j> :YcmCompleter GoToImplementationElseDeclaration<cr>
+nnoremap <C-k> :YcmCompleter GoToInclude<cr>
+nnoremap <C-l> :YcmCompleter GetType<cr>
+
 
 " For python-mode
 let g:pymode_python = 'python3'

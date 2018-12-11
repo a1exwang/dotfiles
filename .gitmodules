@@ -6,10 +6,10 @@
 	url = https://github.com/yyuu/pyenv.git
 [submodule ".vim/bundle/vim-bundler"]
 	path = .vim/bundle/vim-bundler
-	url = git://github.com/tpope/vim-bundler.git
+	url = https://github.com/tpope/vim-bundler.git
 [submodule ".vim/bundle/vim-rails"]
 	path = .vim/bundle/vim-rails
-	url = git://github.com/tpope/vim-rails.git
+	url = https://github.com/tpope/vim-rails.git
 [submodule ".vim/bundle/vim-ruby"]
 	path = .vim/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
@@ -24,13 +24,13 @@
 	url = https://github.com/Valloric/YouCompleteMe.git
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
-	url = git@github.com:scrooloose/nerdcommenter.git
+	url = https://github.com/scrooloose/nerdcommenter.git
 [submodule ".vim/bundle/vim-orgmode"]
 	path = .vim/bundle/vim-orgmode
 	url = https://github.com/jceb/vim-orgmode
 [submodule ".vim/bundle/vim-speeddating"]
 	path = .vim/bundle/vim-speeddating
-	url = git://github.com/tpope/vim-speeddating.git
+	url = https://github.com/tpope/vim-speeddating.git
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
@@ -42,28 +42,28 @@
 	url = https://github.com/tmux-plugins/tpm
 [submodule ".vim/bundle/vim-colors-solarized"]
 	path = .vim/bundle/vim-colors-solarized
-	url = git@github.com:altercation/vim-colors-solarized.git
+	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
 [submodule ".vim/bundle/vim-tmux-navigator"]
 	path = .vim/bundle/vim-tmux-navigator
-	url = git@github.com:christoomey/vim-tmux-navigator.git
+	url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule ".vim/bundle/vim-tmux-clipboard"]
 	path = .vim/bundle/vim-tmux-clipboard
-	url = git@github.com:roxma/vim-tmux-clipboard.git
+	url = https://github.com/roxma/vim-tmux-clipboard.git
 [submodule ".vim/bundle/vim-tmux-focus-events"]
 	path = .vim/bundle/vim-tmux-focus-events
-	url = git://github.com/tmux-plugins/vim-tmux-focus-events.git
+	url = https://github.com/tmux-plugins/vim-tmux-focus-events.git
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround
 [submodule ".vim/bundle/vim-endwise"]
 	path = .vim/bundle/vim-endwise
-	url = git://github.com/tpope/vim-endwise.git
+	url = https://github.com/tpope/vim-endwise.git
 [submodule ".vim/bundle/delimitmate"]
 	path = .vim/bundle/delimitmate
 	url = https://github.com/raimondi/delimitmate
@@ -75,7 +75,7 @@
 	url = https://github.com/tpope/vim-fireplace
 [submodule ".vim/bundle/VimClojure"]
 	path = .vim/bundle/VimClojure
-	url = git@github.com:vim-scripts/VimClojure.git
+	url = https://github.com/vim-scripts/VimClojure.git
 [submodule ".oh-my-fish"]
 	path = .oh-my-fish
 	url = https://github.com/oh-my-fish/oh-my-fish
@@ -118,15 +118,18 @@
 [submodule ".vim/bundle/gocode"]
 	path = .vim/bundle/gocode
 	url = https://github.com/nsf/gocode.git
-[submodule "/home/alexwang/.vim/bundle/vim-cmake-syntax"]
-	path = /home/alexwang/.vim/bundle/vim-cmake-syntax
-	url = git://github.com/pboettch/vim-cmake-syntax.git
-[submodule "/home/alexwang/.vim/bundle/Conque-GDB"]
-	path = /home/alexwang/.vim/bundle/Conque-GDB
+[submodule ".vim/bundle/vim-cmake-syntax"]
+	path = .vim/bundle/vim-cmake-syntax
+	url = https://github.com/pboettch/vim-cmake-syntax.git
+[submodule ".vim/bundle/Conque-GDB"]
+	path = .vim/bundle/Conque-GDB
 	url = https://github.com/vim-scripts/Conque-GDB.git
-[submodule "/home/alexwang/.vim/bundle/vim-go"]
-	path = /home/alexwang/.vim/bundle/vim-go
+[submodule ".vim/bundle/vim-go"]
+	path = .vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
-[submodule "/home/alexwang/.vim/bundle/ag"]
-	path = /home/alexwang/.vim/bundle/ag
+[submodule ".vim/bundle/ag"]
+	path = .vim/bundle/ag
 	url = https://github.com/brookhong/ag.vim.git
+[submodule ".vim/bundle/cscope.vim"]
+	path = .vim/bundle/cscope.vim
+	url = https://github.com/brookhong/cscope.vim.git

@@ -25,8 +25,8 @@ def ping(addr)
   elsif loss_rate == -1
     return "DNS failure", :dns
   else
-    return (avg_delay ? (avg_delay + "ms/") : '') + 
-      ("%0.0f%% loss" % loss_rate), :ok
+    return (avg_delay ? ("%.0fms/" % avg_delay) : '') + 
+      ("%0.0f%%" % loss_rate), :ok
   end
 end
 

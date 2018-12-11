@@ -6,7 +6,7 @@
 [user]
 	email = ice_b0und@hotmail.com
 	name = Alex Wang
-	signingkey = 567DB166121FF443095A24B468FF2F078BF3159E
+	signingkey = EC88F9ED6A2EC169D3B81A7D3375BA4DE61D4172
 [alias]
 	co = checkout
 	ci = commit
@@ -20,7 +20,7 @@
 [diff]
 	tool = meld
 [commit]
-	gpgsign = false
+	gpgsign = true
 [core]
 	editor = vim
 

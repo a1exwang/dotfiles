@@ -1,9 +1,16 @@
 #!/bin/bash
 
-# Linode Tokyo
-nohup sslocal -s 45.32.44.171 -k ygbkm+1995 -m chacha20 -p 8124 -l 1084 > ~/var/ss.jp.log &
+killall sslocal &> /dev/null
 # Vultr Tokyo
-nohup sslocal -s jp2.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1086 > ~/var/ss.jp.log &
+nohup sslocal -s jp2.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1086 > ~/var/ss.jp.log 2> /dev/null &
+# Linode Tokyo
+nohup sslocal -s 45.32.44.171 -k ygbkm+1995 -m chacha20 -p 8124 -l 1084 > ~/var/ss.jp2.log 2> /dev/null &
+# DigitalOcean Singapore
+nohup sslocal -s sg1.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1087 > ~/var/ss.sg1.log 2> /dev/null &
+# UFO Hong Kong
+nohup sslocal -s hk1.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1088 > ~/var/ss.hk1.log 2> /dev/null &
+# Linode via Aliyun Beijing 1
+nohup sslocal -s 47.93.199.85 -k ygbkm+1995 -m chacha20 -p 3389 -l 1090 > ~/var/ss.jp2-via-bj1.log 2> /dev/null &
 
 # cd /home/alexwang/dev/proj/cpp/udptunnel
 # sudo ./client 192.138.210.94 53 123 &
@@ -11,14 +18,19 @@ nohup sslocal -s jp2.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1086 > ~/var
 # sleep 1
 # nohup sslocal -s 192.168.206.1 -m chacha20 -k ygbkm+1995 -p 8124 -l 10803 > ~/var/ss.dallas.udp.log &
 
-killall myping
+killall myping &> /dev/null
 # ping server 
-nohup myping jp2.wtmsb.wtf /home/alexwang/var/buffer/jp2.ping > /dev/null &
-nohup myping jp.wtmsb.wtf /home/alexwang/var/buffer/jp.ping > /dev/null &
-# nohup mytcping 139.219.7.51 4002 /home/alexwang/var/buffer/azjp1.ping > /dev/null &
+nohup myping jp2.wtmsb.wtf /home/alexwang/var/buffer/jp2.ping > /dev/null 2> /dev/null &
+nohup myping jp.wtmsb.wtf /home/alexwang/var/buffer/jp.ping > /dev/null 2> /dev/null &
+nohup myping sg1.wtmsb.wtf /home/alexwang/var/buffer/sg1.ping > /dev/null 2> /dev/null &
+nohup myping hk1.wtmsb.wtf /home/alexwang/var/buffer/hk1.ping > /dev/null 2> /dev/null &
+
+killall mytcping &> /dev/null
+nohup mytcping hk1.wtmsb.wtf 4124 /home/alexwang/var/buffer/hk1.tcping > /dev/null 2> /dev/null &
 
 # logger daemon
-nohup /home/alexwang/bin/logger_mon > /dev/null &
+killall logger_mon &> /dev/null
+nohup /home/alexwang/bin/logger_mon > /dev/null 2> /dev/null &
 # Only do these when XWindow is available
 if ! [ -z ${DISPLAY+x} ]; then
   # configure mouse speed

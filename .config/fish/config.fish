@@ -15,6 +15,7 @@ set -x PATH "$GOPATH/bin" $PATH
 export SSH_AUTH_SOCK=(gpgconf --list-dirs agent-ssh-socket)
 export GPG_TTY=(tty)
 gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye > /dev/null
 #set -x SSH_AUTH_SOCK "~/.gnupg/S.gpg-agent.ssh"
 set -x WTF_DB_PATH "$HOME/dev/proj/wtf_you_must_know"
 
@@ -64,7 +65,10 @@ alias gpg gpg2
 
 set -gx LD_PRELOAD /usr/lib/libstderred.so
 
-eval (ssh-agent -c) > /dev/null
+#if set -q var SSH_AUTH_SOCK
+#    eval (ssh-agent -c) > /dev/null
+#end
+
 
 function ssh
   if echo $TERM | grep screen > /dev/null

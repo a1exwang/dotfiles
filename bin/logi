@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 list = `xinput --list` 
 list.each_line do |l|
- 	if l =~ /Logitech.*id=(\d+)/
-    puts "setting #{l}"
-    `xinput set-prop #{$1} "libinput Accel Speed" 0`
+ 	if l =~ /Logitech Gaming Mouse G502\s+id=(\d+)/
+    # puts "setting #{l}"
+    `xinput set-prop #{$1} "libinput Accel Speed" 1.0`
+    break
  	end 
 end
