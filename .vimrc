@@ -143,6 +143,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" For vim-rtags
+let g:rtagsUseLocationList = 0
 
 " Press Enter to remove search highlight
 nnoremap <ENTER> :nohlsearch<cr>

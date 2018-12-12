@@ -133,3 +133,9 @@
 [submodule ".vim/bundle/cscope.vim"]
 	path = .vim/bundle/cscope.vim
 	url = https://github.com/brookhong/cscope.vim.git
+[submodule ".vim/bundle/vim-rtags"]
+	path = .vim/bundle/vim-rtags
+	url = https://github.com/lyuts/vim-rtags
+[submodule ".vim/bundle/unimpaired"]
+	path = .vim/bundle/unimpaired
+	url = https://tpope.io/vim/unimpaired.git
