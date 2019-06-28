@@ -123,6 +123,28 @@ def flow_info
   end
 end
 
+def root_stat
+  used, available = `df / | tail -1 | awk '{print $3,$4}'`.split(" ").map {|x| x.to_i * 1024}
+  "%s/%s" % [*[available, used].map {|x| Filesize.from(x.to_s + " B").pretty}]
+end
+
+def mem_stat
+  `free -m | awk 'NR==2{printf "%.1f/%.1f GiB", $3/1024,$2/1024 }'`
+end
+
+def cat_file(filepath)
+  open(filepath, 'r') do |f|
+    s = f.read
+    return s
+  end
+end
+
+print cat_file("/home/alexwang/var/cpu.stat")
+print ' | '
+print mem_stat
+print ' | '
+print root_stat
+print ' | '
 print network_stat
 #dateinfo = date_info
 #if date_info

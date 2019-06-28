@@ -2,15 +2,13 @@
 
 killall sslocal &> /dev/null
 # Vultr Tokyo
-nohup sslocal -s jp2.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1086 > ~/var/ss.jp.log 2> /dev/null &
+nohup sslocal -s 45.32.44.171 -k ygbkm+1995 -m xchacha20-ietf-poly1305 -p 8124 -l 1086 > ~/var/ss.jp.log 2> /dev/null &
 # Linode Tokyo
-nohup sslocal -s 45.32.44.171 -k ygbkm+1995 -m chacha20 -p 8124 -l 1084 > ~/var/ss.jp2.log 2> /dev/null &
+nohup sslocal -s jp2.wtmsb.wtf -k ygbkm+1995 -m xchacha20-ietf-poly1305 -p 8125 -l 1084 > ~/var/ss.jp2.log 2> /dev/null &
 # DigitalOcean Singapore
 nohup sslocal -s sg1.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1087 > ~/var/ss.sg1.log 2> /dev/null &
-# UFO Hong Kong
-nohup sslocal -s hk1.wtmsb.wtf -k ygbkm+1995 -m chacha20 -p 8124 -l 1088 > ~/var/ss.hk1.log 2> /dev/null &
-# Linode via Aliyun Beijing 1
-nohup sslocal -s 47.93.199.85 -k ygbkm+1995 -m chacha20 -p 3389 -l 1090 > ~/var/ss.jp2-via-bj1.log 2> /dev/null &
+# US2 Vultr
+nohup sslocal -s 140.82.17.68 -k ygbkm+1995 -m xchacha20-ietf-poly1305 -p 8124 -l 1090 > ~/var/ss.jp2-via-bj1.log 2> /dev/null &
 
 # cd /home/alexwang/dev/proj/cpp/udptunnel
 # sudo ./client 192.138.210.94 53 123 &
@@ -20,13 +18,13 @@ nohup sslocal -s 47.93.199.85 -k ygbkm+1995 -m chacha20 -p 3389 -l 1090 > ~/var/
 
 killall myping &> /dev/null
 # ping server 
-nohup myping jp2.wtmsb.wtf /home/alexwang/var/buffer/jp2.ping > /dev/null 2> /dev/null &
-nohup myping jp.wtmsb.wtf /home/alexwang/var/buffer/jp.ping > /dev/null 2> /dev/null &
-nohup myping sg1.wtmsb.wtf /home/alexwang/var/buffer/sg1.ping > /dev/null 2> /dev/null &
-nohup myping hk1.wtmsb.wtf /home/alexwang/var/buffer/hk1.ping > /dev/null 2> /dev/null &
+nohup myping 172.105.213.14 /home/alexwang/var/buffer/jp2.ping > /dev/null 2> /dev/null &
+nohup myping 45.32.44.171 /home/alexwang/var/buffer/jp.ping > /dev/null 2> /dev/null &
+# nohup myping sg1.wtmsb.wtf /home/alexwang/var/buffer/sg1.ping > /dev/null 2> /dev/null &
+# nohup myping hk1.wtmsb.wtf /home/alexwang/var/buffer/hk1.ping > /dev/null 2> /dev/null &
 
-killall mytcping &> /dev/null
-nohup mytcping hk1.wtmsb.wtf 4124 /home/alexwang/var/buffer/hk1.tcping > /dev/null 2> /dev/null &
+nohup log_cpu_stat &> /dev/null &
+nohup dunst &>/home/alexwang/var/dunst.log &
 
 # logger daemon
 killall logger_mon &> /dev/null
@@ -50,5 +48,7 @@ if ! [ -z ${DISPLAY+x} ]; then
   setxkbmap -option caps:escape
   xset r rate 200 30
 fi
+redshift -l 40:116
 xhost +local:root
+
 

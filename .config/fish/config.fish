@@ -1,16 +1,15 @@
 setxkbmap -option caps:escape
 xset r rate 200 30
 
-set -gx PYENV_ROOT "$HOME/.pyenv"
-set -gx PATH "$PYENV_ROOT/bin" $PATH
+#set -gx PYENV_ROOT "$HOME/.pyenv"
 
 
 set -x PATH "/opt/cuda/bin/" $PATH
 set -x PATH "$HADOOP_HOME/bin" $PATH
 set -x PATH "$HOME/bin" $PATH
 set -x PATH "/usr/lib/ccache/bin" $PATH
-set -x GOPATH "$HOME/go"
-set -x PATH "$GOPATH/bin" $PATH
+#set -x GOPATH "$HOME/go"
+#set -x PATH "$GOPATH/bin" $PATH
 #set -x GOROOT $HOME/go
 export SSH_AUTH_SOCK=(gpgconf --list-dirs agent-ssh-socket)
 export GPG_TTY=(tty)
@@ -78,11 +77,7 @@ function ssh
   end
 end
 
-function gvm
-  bass source ~/.gvm/scripts/gvm ';' gvm $argv
-end
-
-bass source "/home/alexwang/.gvm/scripts/gvm"
 export _JAVA_AWT_WM_NONREPARENTING=1
-status --is-interactive; and source (pyenv init -|psub)
+#set -gx PATH "$PYENV_ROOT/bin" $PATH
+#status --is-interactive; and source (pyenv init -|psub)
 rvm default

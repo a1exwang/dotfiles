@@ -153,3 +153,18 @@ nnoremap <ENTER> :nohlsearch<cr>
 nmap <Leader>x :TagbarToggle
 
 let g:ConqueGdb_Disable = 1
+
+" Customized mode 
+"
+" Create a submode to handle TODOs
+" The submode is entered whith <Leader>k and exited with <Leader>
+call submode#enter_with('TODOMode', 'n', '', '<Leader>k', ':echo "windows mode"<CR>')
+call submode#leave_with('TODOMode', 'n', '', '<Leader>')
+call submode#map('TODOMode', 'n', '', '<C-t>', ':execute "normal! i[TODO] "<cr>')
+call submode#map('TODOMode', 'n', '', '<C-n>', ':execute "normal! i[PENDING] "<cr>')
+
+let g:submode_keep_leaving_key = 0
+let g:submode_timeout = 0
+
+" Vim pandoc
+let g:pandoc#spell#enabled = 0

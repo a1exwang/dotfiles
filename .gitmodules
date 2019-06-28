@@ -49,9 +49,6 @@
 [submodule ".vim/bundle/vim-tmux-navigator"]
 	path = .vim/bundle/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
-[submodule ".vim/bundle/vim-tmux-clipboard"]
-	path = .vim/bundle/vim-tmux-clipboard
-	url = https://github.com/roxma/vim-tmux-clipboard.git
 [submodule ".vim/bundle/vim-tmux-focus-events"]
 	path = .vim/bundle/vim-tmux-focus-events
 	url = https://github.com/tmux-plugins/vim-tmux-focus-events.git
@@ -139,3 +136,12 @@
 [submodule ".vim/bundle/unimpaired"]
 	path = .vim/bundle/unimpaired
 	url = https://tpope.io/vim/unimpaired.git
+[submodule ".vim/bundle/vim-submode"]
+	path = .vim/bundle/vim-submode
+	url = https://github.com/kana/vim-submode.git
+[submodule ".vim/bundle/vim-pandoc"]
+	path = .vim/bundle/vim-pandoc
+	url = https://github.com/vim-pandoc/vim-pandoc.git
+[submodule "/home/alexwang/.vim/bundle/typescript-vim"]
+	path = /home/alexwang/.vim/bundle/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git

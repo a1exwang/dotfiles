@@ -26,3 +26,5 @@
 
 [url "ssh://git@gitlab.momenta.works/"]
   insteadOf = https://gitlab.momenta.works/
+[gc]
+	autoDetach = false

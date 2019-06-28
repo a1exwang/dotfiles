@@ -5,4 +5,5 @@ loop do
   # `thuflow > #{File.join(BASE, 'thuflow')}`
   `ip route > #{File.join(BASE, 'route')}`
   sleep INTERVAL
+  `xset r rate 200 36`
 end
