@@ -103,9 +103,6 @@
 [submodule ".vim/bundle/auto-ctags"]
 	path = .vim/bundle/auto-ctags
 	url = https://github.com/soramugi/auto-ctags.vim.git
-[submodule ".vim/bundle/vim-easytags"]
-	path = .vim/bundle/vim-easytags
-	url = https://github.com/xolox/vim-easytags.git
 [submodule ".vim/bundle/vim-misc"]
 	path = .vim/bundle/vim-misc
 	url = https://github.com/xolox/vim-misc.git

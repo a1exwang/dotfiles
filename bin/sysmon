@@ -139,13 +139,24 @@ def cat_file(filepath)
   end
 end
 
+def battery_stat
+  begin
+    current = File.read('/sys/class/power_supply/BAT0/current_now').to_f / 1e6
+    voltage = File.read('/sys/class/power_supply/BAT0/voltage_now').to_f / 1e6
+    charge = File.read('/sys/class/power_supply/BAT0/charge_now').to_f / 1e6
+    t = charge / current
+    print(" | %.1fA %.1fW %.1fh" % [current, current * voltage, t])
+  rescue Exception => e
+    STDERR.puts e
+  end
+end
+
 print cat_file("/home/alexwang/var/cpu.stat")
 print ' | '
 print mem_stat
 print ' | '
-print root_stat
-print ' | '
 print network_stat
+battery_stat
 #dateinfo = date_info
 #if date_info
 #  print " | #{dateinfo}"

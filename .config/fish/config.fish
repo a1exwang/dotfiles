@@ -1,7 +1,7 @@
 setxkbmap -option caps:escape
 xset r rate 200 30
 
-#set -gx PYENV_ROOT "$HOME/.pyenv"
+set -gx PYENV_ROOT "$HOME/.pyenv"
 
 
 set -x PATH "/opt/cuda/bin/" $PATH
@@ -78,6 +78,7 @@ function ssh
 end
 
 export _JAVA_AWT_WM_NONREPARENTING=1
-#set -gx PATH "$PYENV_ROOT/bin" $PATH
-#status --is-interactive; and source (pyenv init -|psub)
+set -gx PATH ~/.npm-global/bin $PATH
+set -gx PATH "$PYENV_ROOT/bin" $PATH
+status --is-interactive; and pyenv init - | source
 rvm default

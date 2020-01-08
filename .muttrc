@@ -1,6 +1,8 @@
 set ssl_starttls=yes
 set ssl_force_tls=yes
 
+source "~/.gpg.muttrc"
+
 set imap_user = 'ice_b0und@hotmail.com'
 set my_pass="`pass ice_b0und@hotmail.com`"
 set imap_pass = $my_pass
@@ -19,3 +21,16 @@ set smtp_pass = $imap_pass
 set move = no
 set imap_keepalive = 900
 set record="+Sent"
+set editor='vim'
+bind index G imap-fetch-mail
+macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=utf8\n"
+set charset="utf-8"
+set wait_key=no
+set pgp_default_key = "EC88F9ED6A2EC169D3B81A7D3375BA4DE61D4172"
+set pgp_use_gpg_agent = yes
+set crypt_autosign = yes
+set crypt_opportunistic_encrypt = yes
+set crypt_replysign = yes
+set crypt_replysignencrypted = yes
+set postpone_encrypt = yes
+
